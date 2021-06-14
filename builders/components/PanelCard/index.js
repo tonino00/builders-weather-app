@@ -1,7 +1,7 @@
-import {StatusBar} from 'native-base';
 import React from 'react';
 import {View} from 'react-native';
 import {Card, CardItem, Text, Icon, Left, Body} from 'native-base';
+import {StyleSheet} from 'react-native';
 
 const PanelCard = props => {
   let temp = props.main.temp;
@@ -23,11 +23,13 @@ const PanelCard = props => {
           <Icon
             ios="ios-earth-outline"
             android="md-earth-outline"
-            style={{fontSize: 40}}
+            style={styles.panelCard__Icon}
           />
           <Body>
-            <View style={{flexDirection: 'row'}}>
-              <Text style={{fontSize: 22}}>{convertKelvinToC(temp)}</Text>
+            <View style={styles.panelCard__Flexcolunm}>
+              <Text style={styles.panelCard__Text}>
+                {convertKelvinToC(temp)}
+              </Text>
               <Text>°c</Text>
             </View>
             <Text note>
@@ -39,5 +41,17 @@ const PanelCard = props => {
     </Card>
   );
 };
+
+const styles = StyleSheet.create({
+  panelCard__Icon: {
+    fontSize: 40,
+  },
+  panelCard__Flexcolunm: {
+    flexDirection: 'row',
+  },
+  panelCard__Text: {
+    fontSize: 22,
+  },
+});
 
 export default PanelCard;
