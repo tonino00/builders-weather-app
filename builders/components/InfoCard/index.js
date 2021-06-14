@@ -1,5 +1,6 @@
 import React from 'react';
 import {Card, CardItem, Text} from 'native-base';
+import {StyleSheet} from 'react-native';
 
 const InfoCard = props => {
   function convertKelvinToC(kelvin) {
@@ -13,31 +14,14 @@ const InfoCard = props => {
 
   return (
     <Card>
-      <Text
-        style={{
-          textAlign: 'center',
-          fontSize: 25,
-          fontWeight: '600',
-          marginTop: 5,
-        }}>
-        Info do dia
-      </Text>
-      <CardItem
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          textAlign: 'center',
-        }}>
+      <Text style={styles.infoCard__Title}>Info do dia</Text>
+      <CardItem style={styles.infoCard__Item}>
         <Text>Vento</Text>
         <Text>Umidade</Text>
         <Text>Temp.Máx</Text>
         <Text>Temp.Min</Text>
       </CardItem>
-      <CardItem
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}>
+      <CardItem style={styles.infoCard__Item}>
         <Text>{wind}</Text>
         <Text>{humidity} %</Text>
         <Text>{convertKelvinToC(tempMax)} °c</Text>
@@ -46,5 +30,18 @@ const InfoCard = props => {
     </Card>
   );
 };
+
+const styles = StyleSheet.create({
+  infoCard__Title: {
+    textAlign: 'center',
+    fontSize: 25,
+    fontWeight: '600',
+    marginTop: 5,
+  },
+  infoCard__Item: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+});
 
 export default InfoCard;

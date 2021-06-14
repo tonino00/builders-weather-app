@@ -13,7 +13,7 @@ import {
   Right,
   Title,
 } from 'native-base';
-import {ActivityIndicator, View, Text} from 'react-native';
+import {ActivityIndicator, View, Text, StyleSheet} from 'react-native';
 
 const App = () => {
   const [main, setMain] = useState([]);
@@ -34,7 +34,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    setisLoading(false);
     getData();
   }, []);
 
@@ -52,14 +51,7 @@ const App = () => {
 
   if (isLoading) {
     return (
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: 100,
-          backgroundColor: '#FFFFFF',
-        }}>
+      <View style={styles.loading}>
         <ActivityIndicator color="blue" size={36} />
         <Text>Carregando...</Text>
       </View>
@@ -69,15 +61,15 @@ const App = () => {
   return (
     <Container>
       <Header>
-        <Left style={{flex: 1}}>
+        <Left style={styles.flexItem}>
           <Button transparent onPress={() => setData()}>
-            <Icon name="reload-outline" style={{fontSize: 20}} />
+            <Icon name="reload-outline" style={styles.icon} />
           </Button>
         </Left>
         <Body>
-          <Title style={{marginLeft: 2, marginRight: 2}}>Clima App</Title>
+          <Title style={styles.title}>Clima App</Title>
         </Body>
-        <Right style={{flex: 1}} />
+        <Right style={styles.flexItem} />
       </Header>
       <Content>
         <PanelCard main={main} sys={sys} othersInfo={othersInfo} />
@@ -104,5 +96,25 @@ const App = () => {
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  title: {
+    marginLeft: 2,
+    marginRight: 2,
+  },
+  icon: {
+    fontSize: 20,
+  },
+  loading: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 100,
+    backgroundColor: '#FFFFFF',
+  },
+  flexItem: {
+    flex: 1,
+  },
+});
 
 export default App;
